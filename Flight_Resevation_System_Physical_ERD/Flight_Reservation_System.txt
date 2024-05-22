@@ -1,0 +1,64 @@
+-- Admin table
+CREATE TABLE Admin (
+    Admin_ID INT PRIMARY KEY,
+    First_Name VARCHAR(50) not null,
+    Last_Name VARCHAR(50),
+    Email VARCHAR(50),
+    Phone VARCHAR(20),
+    Password VARCHAR(20)
+);
+
+-- Aircraft table
+CREATE TABLE Aircraft (
+    Aircraft_ID INT PRIMARY KEY,
+    Type VARCHAR(25),
+    Number_of_Seats INT
+);
+
+-- Flight table
+CREATE TABLE Flight (
+    Flight_ID INT PRIMARY KEY,
+    Aircraft_ID INT,
+    Departure_City VARCHAR(50),
+    Departure_Time DATETIME,
+    Available_Seats INT,
+    FOREIGN KEY (Aircraft_ID) REFERENCES Aircraft(Aircraft_ID)
+);
+
+-- Passenger table 
+CREATE TABLE Passenger (
+    Flight_ID INT,
+    Passenger_ID INT,
+    PRIMARY KEY (Flight_ID, Passenger_ID)
+);
+
+
+-- Ticket table
+CREATE TABLE Ticket (
+    Ticket_ID INT PRIMARY KEY,
+    Flight_ID INT,
+    Passenger_ID INT
+);
+
+-- Customer table
+CREATE TABLE Customer (
+    Customer_ID INT PRIMARY KEY,
+    First_Name VARCHAR(50) not null,
+    Last_Name VARCHAR(50),
+    Email VARCHAR(50),
+    Phone VARCHAR(20),
+    Password VARCHAR(20)
+);
+
+CREATE TABLE Modify_Flight (
+     Admin_ID INT,
+     Flight_ID INT,
+     PRIMARY KEY (Flight_ID,Admin_ID)
+);
+
+
+CREATE TABLE Modify_Aircraft (
+     Admin_ID INT,
+     Aircraft_ID INT,
+     PRIMARY KEY (Aircraft_ID,Admin_ID)
+);
